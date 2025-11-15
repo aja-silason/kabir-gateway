@@ -3,9 +3,14 @@ interface Location {
     lng: number
 }
 
+interface VehicleType { 
+    type: string,
+    plate: string
+}
+
 export type DriverProps = {
     driverName: string,
-    vehicleType: string,
+    vehicleType: VehicleType,
     location: Location,
     priceEstimate: string,
     etaMinutes: number,

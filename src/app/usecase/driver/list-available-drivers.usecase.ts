@@ -1,11 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import axios from "axios";
 import { Driver, DriverProps } from "src/domain/driver/model/driver.model";
-import { DriverProtocol } from "src/domain/driver/protocol/driver.protocol";
-// import { LogRepository } from "src/infra/repository/driver/log.repository";
 
 @Injectable()
-export class listAvailableDriversUsecase {
+export class ListAvailableDriversUsecase {
 
     constructor(
         // private logRepo: LogRepository
@@ -21,7 +19,7 @@ export class listAvailableDriversUsecase {
 
             const transform: DriverProps = {
                 driverName: d.driverName,
-                vehicleType: d.vehicleType,
+                vehicleType: {type: d.vehicleType.type, plate: d.vehicleType.plate},
                 location: { lat: d.location.lat, lng: d.location.lng },
                 priceEstimate: (Math.random() * 5 + 2).toFixed(2),
                 etaMinutes: Math.floor(Math.random() * 10) + 2

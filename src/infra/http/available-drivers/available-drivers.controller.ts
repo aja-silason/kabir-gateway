@@ -9,10 +9,6 @@ export class AvailableDriversController {
     private readonly availableDriversService: AvailableDriversService
   ) {}
 
-  // @Post()
-  // create(@Body() createAvailableDriverDto: CreateAvailableDriverDto) {
-  //   return this.availableDriversService.create(createAvailableDriverDto);
-  // }
 
   @Get()
   async getAvailable(@Req() req): Promise<AvailabeDriverResponseDto[]> {
@@ -28,18 +24,4 @@ export class AvailableDriversController {
 
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.availableDriversService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateAvailableDriverDto: UpdateAvailableDriverDto) {
-  //   return this.availableDriversService.update(+id, updateAvailableDriverDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.availableDriversService.remove(+id);
-  // }
 }

@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { listAvailableDriversUsecase } from 'src/app/usecase/driver/list-available-drivers.usecase';
+import { ListAvailableDriversUsecase } from 'src/app/usecase/driver/list-available-drivers.usecase';
 
 @Injectable()
 export class AvailableDriversService {
@@ -8,7 +8,7 @@ export class AvailableDriversService {
   // }
 
   constructor(
-    private readonly listAvailableDriversUsecase: listAvailableDriversUsecase,
+    private readonly listAvailableDriversUsecase: ListAvailableDriversUsecase,
   ){}
 
   async findAll() {
@@ -22,15 +22,4 @@ export class AvailableDriversService {
 
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} availableDriver`;
-  // }
-
-  // update(id: number, updateAvailableDriverDto: UpdateAvailableDriverDto) {
-  //   return `This action updates a #${id} availableDriver`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} availableDriver`;
-  // }
 }
