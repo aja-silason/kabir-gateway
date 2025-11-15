@@ -1,0 +1,14 @@
+services:
+  nest-dev:
+    container_name: integration_kabir
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    ports:
+      - "3000:3000"
+      - "9222:9222"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped

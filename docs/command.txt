@@ -1,0 +1,8 @@
+Inicializar o prisma
+    npx prisma init
+
+migrar o db
+    npx prisma migrate dev --name "nome do init"
+    npx prisma generate
+
+
