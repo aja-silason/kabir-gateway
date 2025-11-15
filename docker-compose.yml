@@ -1,14 +1,33 @@
 services:
-  nest-dev:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: kabir
+      POSTGRES_PASSWORD: kabir
+      POSTGRESS_DB: bitkabirgateway
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgres/data
+
+  api:
     container_name: integration_kabir
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - db
     command: npm run start:dev
     ports:
       - "3000:3000"
       - "9222:9222"
+
+    environment:
+      DATABASE_URL: "postgresql://kabir:kabir@db:5432/bitkabirgateway?schema=public"
     volumes:
       - .:/app
       - /app/node_modules
     restart: unless-stopped
+
+volumes:
+  dbdata:
