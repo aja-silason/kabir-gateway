@@ -1,3 +1,4 @@
+//Caso eu precisasse adicionar algumas regras
 export class DriverEntity {
 
     public driverName: string

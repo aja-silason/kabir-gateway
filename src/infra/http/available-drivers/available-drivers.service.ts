@@ -1,5 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { ListAvailableDriversUsecase } from 'src/app/usecase/driver/list-available-drivers.usecase';
+import { DriverNotFoundException } from 'src/domain/exception/DriverNotFound';
 
 @Injectable()
 export class AvailableDriversService {
@@ -13,11 +14,13 @@ export class AvailableDriversService {
 
   async findAll() {
 
-    try {
-      return await this.listAvailableDriversUsecase.execute();
-    } catch (error) {
-      throw new HttpException(error.message, error.statusCode);
-    }
+      const drivers = await this.listAvailableDriversUsecase.execute();
+      
+      if(!drivers.length) {
+        throw new DriverNotFoundException("No drivers available");
+      }
+
+      return drivers;
 
 
   }
