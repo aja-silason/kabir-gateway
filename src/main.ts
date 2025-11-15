@@ -22,7 +22,7 @@ async function bootstrap() {
     credentials: true
   });
 
-  const configS = app.get<ConfigService>(ConfigService);
-  await app.listen(process.env.PORT ?? 3000);
+  app.get<ConfigService>(ConfigService);
+  await app.listen(process.env.PORT ?? 3001);
 }
 bootstrap();

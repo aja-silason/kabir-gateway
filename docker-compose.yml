@@ -1,14 +1,20 @@
 services:
   db:
     image: postgres:15
+    container_name: bitkabirgateway
     environment:
       POSTGRES_USER: kabir
       POSTGRES_PASSWORD: kabir
-      POSTGRESS_DB: bitkabirgateway
+      POSTGRES_DB: bitkabirgateway
     ports:
       - "5432:5432"
     volumes:
-      - dbdata:/var/lib/postgres/data
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kabir"]
+      interval: 5s
+      retries: 10
+      start_period: 5s
 
   api:
     container_name: integration_kabir
@@ -16,7 +22,8 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     command: npm run start:dev
     ports:
       - "3000:3000"

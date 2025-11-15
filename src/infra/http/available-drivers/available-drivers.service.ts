@@ -1,6 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAvailableDriverDto } from './dto/create-available-driver.dto';
-import { UpdateAvailableDriverDto } from './dto/update-available-driver.dto';
+import { HttpException, Injectable } from '@nestjs/common';
+import { listAvailableDriversUsecase } from 'src/app/usecase/driver/list-available-drivers.usecase';
 
 @Injectable()
 export class AvailableDriversService {
@@ -8,8 +7,19 @@ export class AvailableDriversService {
   //   return 'This action adds a new availableDriver';
   // }
 
-  findAll() {
-    return `This action returns all availableDrivers`;
+  constructor(
+    private readonly listAvailableDriversUsecase: listAvailableDriversUsecase,
+  ){}
+
+  async findAll() {
+
+    try {
+      return await this.listAvailableDriversUsecase.execute();
+    } catch (error) {
+      throw new HttpException(error.message, error.statusCode);
+    }
+
+
   }
 
   // findOne(id: number) {

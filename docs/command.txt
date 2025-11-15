@@ -5,4 +5,6 @@ migrar o db
     npx prisma migrate dev --name "nome do init"
     npx prisma generate
 
+Rodar de dentro do container
 
+    docker exec -it integration_kabir npx prisma migrate dev --name init

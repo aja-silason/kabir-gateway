@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { AvailableDriversService } from './available-drivers.service';
-import { CreateAvailableDriverDto } from './dto/create-available-driver.dto';
-import { UpdateAvailableDriverDto } from './dto/update-available-driver.dto';
+import { AvailabeDriverResponseDto } from './dto/response-available-driver.dto';
 
 @Controller('available-drivers')
 export class AvailableDriversController {
-  constructor(private readonly availableDriversService: AvailableDriversService) {}
+
+  constructor(
+    private readonly availableDriversService: AvailableDriversService
+  ) {}
 
   // @Post()
   // create(@Body() createAvailableDriverDto: CreateAvailableDriverDto) {
@@ -13,8 +15,17 @@ export class AvailableDriversController {
   // }
 
   @Get()
-  findAll() {
-    return this.availableDriversService.findAll();
+  async getAvailable(@Req() req): Promise<AvailabeDriverResponseDto[]> {
+
+    const drivers = await this.availableDriversService.findAll();
+    return drivers.map(d => ({
+      driverName: d.allProps.driverName,
+      vehicleType: d.allProps.vehicleType,
+      location: d.allProps.location,
+      priceEstimate: d.allProps.priceEstimate,
+      etaMinutes: d.allProps.etaMinutes
+    }))
+
   }
 
   // @Get(':id')

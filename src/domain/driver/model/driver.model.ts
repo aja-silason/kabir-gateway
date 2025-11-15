@@ -16,9 +16,7 @@ export class Driver {
     constructor( private props: DriverProps ){}
 
     public static create(props: DriverProps) {
-
         return new Driver({...props});
-
     }
 
     public get allProps(){

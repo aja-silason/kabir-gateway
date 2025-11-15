@@ -18,5 +18,5 @@ model ResourceLog {
     id         String   @id @default(uuid())
     route      String
     createdAt  DateTime @default(now())
-    payload    Json
+    // payload    Json
 }
