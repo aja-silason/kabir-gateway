@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm"
 
 import * as dotenv from "dotenv"
+import { LoggsEntity } from "src/domain/logs/entity/logs.entity";
 
 dotenv.config();
 
@@ -12,6 +13,6 @@ export const AppDataSource = new DataSource({
     username: process.env.DATABASE_USER || 'kabir',
     password: process.env.DATABASE_PASSWORD || 'kabir',
     database: process.env.DATABASE_DB || 'bitkabirgateway',
-    entities: [],
+    entities: [LoggsEntity],
     migrations: ['src/infra/migration/*.ts'],
 });

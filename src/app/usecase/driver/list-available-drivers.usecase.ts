@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import axios from "axios";
 import { Driver, DriverProps } from "src/domain/driver/model/driver.model";
+import { CustomNotFound } from "src/domain/exception/CustomNotFound";
 
 @Injectable()
 export class ListAvailableDriversUsecase {
@@ -14,6 +15,10 @@ export class ListAvailableDriversUsecase {
         const res = await axios.get('http://localhost:4000/txkabir/drivers');
 
         const drivers = res.data;
+
+        if(!drivers.length) {
+            throw new CustomNotFound("Resource not found");
+        }
 
         const result: Driver[] = drivers.map((d: DriverProps) => {
 

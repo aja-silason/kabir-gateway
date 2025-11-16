@@ -1,27 +1,25 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { ListAvailableDriversUsecase } from 'src/app/usecase/driver/list-available-drivers.usecase';
-import { DriverNotFoundException } from 'src/domain/exception/DriverNotFound';
+import { CustomNotFound } from 'src/domain/exception/CustomNotFound';
+import { LogsService } from '../logs/logs.service';
 
 @Injectable()
 export class AvailableDriversService {
-  // create(createAvailableDriverDto: CreateAvailableDriverDto) {
-  //   return 'This action adds a new availableDriver';
-  // }
-
-  constructor(
-    private readonly listAvailableDriversUsecase: ListAvailableDriversUsecase,
+    
+    constructor(
+      private readonly listAvailableDriversUsecase: ListAvailableDriversUsecase,
+      private readonly createLogService: LogsService
   ){}
 
-  async findAll() {
+  async findAll(): Promise<any[]> {
 
-      const drivers = await this.listAvailableDriversUsecase.execute();
-      
-      if(!drivers.length) {
-        throw new DriverNotFoundException("No drivers available");
-      }
+    const aSearch = await this.listAvailableDriversUsecase.execute();
+    
+    const res = this.createLogService.create(aSearch);
 
-      return drivers;
+    console.log("No Usecase", res);
 
+    return aSearch;
 
   }
 
