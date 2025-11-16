@@ -8,7 +8,7 @@ export class ListAvailableDriversUsecase {
 
     async execute(): Promise<Driver[]>{
 
-        const res = await axios.get('http://localhost:4000/txkabir/drivers');
+        const res = await axios.get('http://mock-kabir:4000/txkabir/drivers');
 
         const drivers = res.data;
 

@@ -16,6 +16,12 @@ services:
       retries: 10
       start_period: 5s
 
+  mock-kabir:
+    build:
+      context: ./mock-taxkabir
+    ports:
+      - "4000:4000"
+
   api:
     container_name: integration_kabir
     build:
@@ -29,9 +35,8 @@ services:
     command: npm run start:dev
     ports:
       - "3000:3000"
-      - "4000:4000"
       - "9222:9222"
-      
+
     volumes:
       - .:/app
       - node_modules:/app/node_modules
