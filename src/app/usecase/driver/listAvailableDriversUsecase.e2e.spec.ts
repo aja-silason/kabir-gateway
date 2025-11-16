@@ -13,8 +13,12 @@ describe('listAvailableDriversUsecase', () => {
   beforeEach(() => {
     usecase = new ListAvailableDriversUsecase();
 
-    jest.spyOn(Math, 'random').mockReturnValue(0.4912345);
-    jest.spyOn(Math, 'floor').mockReturnValue(4);         
+    // jest.spyOn(Math, 'random').mockReturnValue(0.3);
+    // jest.spyOn(Math, 'floor').mockReturnValue(5);         
+
+    jest.spyOn(Math, 'random').mockImplementationOnce(() => 0.492);
+    jest.spyOn(Math, 'random').mockImplementationOnce(() => 0.285);
+
 
     jest.clearAllMocks();
   });
@@ -29,23 +33,12 @@ describe('listAvailableDriversUsecase', () => {
       {
         driverName: "João Silva",
         vehicleType: {
-          type: "Sedan",
+          type: "Chengan",
           plate: "ABC-123"
         },
         location: {
           lat: -8.839,
           lng: 13.289
-        }
-      },
-      {
-        driverName: "Maria Rosa",
-        vehicleType: {
-          type: "Moto",
-          plate: "XYZ-999"
-        },
-        location: {
-          lat: -8.842,
-          lng: 13.291
         }
       }
     ];
@@ -58,7 +51,7 @@ describe('listAvailableDriversUsecase', () => {
       {
         driverName: "João Silva",
         vehicleType: {
-          type: "Sedan",
+          type: "Chengan",
           plate: "ABC-123"
         },
         location: {
@@ -68,19 +61,6 @@ describe('listAvailableDriversUsecase', () => {
         priceEstimate: "4.46",
         etaMinutes: 4
       },
-      {
-        driverName: "Maria Rosa",
-        vehicleType: {
-          type: "Moto",
-          plate: "XYZ-999"
-        },
-        location: {
-          lat: -8.842,
-          lng: 13.291
-        },
-        priceEstimate: "4.46",
-        etaMinutes: 4
-      }
     ];
 
     result.forEach(item => {

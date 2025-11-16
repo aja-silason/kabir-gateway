@@ -6,10 +6,6 @@ import { CustomNotFound } from "src/domain/exception/CustomNotFound";
 @Injectable()
 export class ListAvailableDriversUsecase {
 
-    constructor(
-        // private logRepo: LogRepository
-    ){}
-
     async execute(): Promise<Driver[]>{
 
         const res = await axios.get('http://localhost:4000/txkabir/drivers');
@@ -33,8 +29,6 @@ export class ListAvailableDriversUsecase {
             return new Driver(transform);
 
         })
-
-        // await this.logRepo.create("/available-drivers");
 
         return result;
 
