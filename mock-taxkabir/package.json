@@ -1,0 +1,16 @@
+{
+  "name": "txkabir",
+  "version": "0.0.1",
+  "description": "Mock service for TXKabir (drivers listing)",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "main.js",
+  "scripts": {
+    "mock": "node ./main.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "keywords": [],
+  "author": ""
+}
