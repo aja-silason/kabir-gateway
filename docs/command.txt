@@ -1,0 +1,8 @@
+rodar a migration
+
+    npm run migration:generate src/infra/db/migrations/AddNewField
+    npm run migration:run
+
+Rodar de dentro do container
+
+    docker exec -it integration_kabir npx prisma migrate dev --name init
