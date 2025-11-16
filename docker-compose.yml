@@ -31,9 +31,7 @@ services:
       - "3000:3000"
       - "4000:4000"
       - "9222:9222"
-
-    # environment:
-    #   DATABASE_URL: "postgresql://kabir:kabir@db:5432/bitkabirgateway?schema=public"
+      
     volumes:
       - .:/app
       - node_modules:/app/node_modules

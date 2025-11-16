@@ -107,7 +107,7 @@ Se a chave estiver incorreta ou ausente, o servidor retorna **401 Unauthorized**
 Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
 ```env
-PORT=3001
+PORT=3000
 DATABASE_URL=postgresql://username:password@localhost:5432/dbname?schema=public
 API_KEY=qwerty12345
 ```
@@ -131,11 +131,11 @@ npm run migration:run
 ### 3. Iniciar a aplicação
 
 ```bash
-npm run start:dev
+npm run start:all
 ```
 
-A API estará disponível em `http://localhost:3001`.
-A documentação Swagger pode ser acessada em `http://localhost:3001/api-docs`.
+A API estará disponível em `http://localhost:3000`.
+A documentação Swagger pode ser acessada em `http://localhost:3000/api-docs`.
 
 ---
 
@@ -163,5 +163,6 @@ Agora a aplicação estará acessível em `http://localhost:3000`.
 ## Observações
 
 * Swagger facilita testar endpoints e enviar a API Key diretamente.
+* Caso rode a aplicação fora do container, certifique-se que tens o banco a rodar, o host deve ser o localhost e não o serviço db
 
 ---
