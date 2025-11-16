@@ -1,8 +1,10 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { AvailableDriversService } from './available-drivers.service';
 import { AvailabeDriverResponseDto } from './dto/response-available-driver.dto';
 import { LoggMetadata } from '../logs/dto/LoggMetadata';
 import { Request } from 'express';
+import { ApiGuard } from 'src/infra/config/api.guard';
+import { ApiSecurity } from '@nestjs/swagger';
 
 
 @Controller('available-drivers')
@@ -13,6 +15,8 @@ export class AvailableDriversController {
   ) {}
 
 
+  @UseGuards(ApiGuard)
+  @ApiSecurity('api-key')
   @Get()
   async getAvailable(@Req() req): Promise<AvailabeDriverResponseDto[]> {
 

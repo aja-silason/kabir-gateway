@@ -9,6 +9,10 @@ async function bootstrap() {
     .setTitle('BitKabir Gateway')
     .setDescription('MVP for consulting TX Kabir resource')
     .setVersion('0.1')
+     .addApiKey(
+        { type: 'apiKey', name: 'x-api-key', in: 'header' }, 
+        'api-key',
+      )
     .addBearerAuth()
     .build();
 
