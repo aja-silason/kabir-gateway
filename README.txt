@@ -164,5 +164,6 @@ Agora a aplicação estará acessível em `http://localhost:3000`.
 
 * Swagger facilita testar endpoints e enviar a API Key diretamente.
 * Caso rode a aplicação fora do container, certifique-se que tens o banco a rodar, o host deve ser o localhost e não o serviço db
+* De realçar que o serviço de TX Kabir, tive que desenvolver uma mini api, só para disponibilizar dados de motoristas, mockados, isso espelha um cenário de integração a um serviço real, o mesmo está a rodar num serviço a parte e com isso tentei ao máximo espelhar o cenário detalhado nos requisitos
 
 ---
