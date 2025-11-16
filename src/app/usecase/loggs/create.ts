@@ -2,6 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { LoggsProtocol } from "src/domain/logs/protocol/logs.protocol";
 import { LoggsDto } from "src/infra/http/logs/dto/LoggsDto";
 import * as os from 'os';
+import { LoggMetadata } from "src/infra/http/logs/dto/LoggMetadata";
+import { Request } from "express";
 
 @Injectable()
 export class GenerateLoggUsecase {
@@ -10,13 +12,24 @@ export class GenerateLoggUsecase {
         private readonly protocol: LoggsProtocol
     ) {}
 
-    async execute(request: { route: string, method: string }): Promise<void>{
+    async execute(req: Request): Promise<void>{
 
         const id = crypto.randomUUID();
 
-        const deviceIp = this.getLocalIP();
+        const startRequest = Date.now();
 
-        const res = new LoggsDto(id, request.route, deviceIp, request.method);
+        const responseTime = Date.now() - startRequest;
+
+        const request: LoggMetadata = {
+            route: req.originalUrl,
+            deviceIp: this.getLocalIP(),
+            method: req.method,
+            queryParams: req.query,
+            responseTimeMs: responseTime,
+            userAgent: req.headers['user-agent']
+        }
+
+        const res = new LoggsDto(id, request);
 
         this.protocol.create(res)
 

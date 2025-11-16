@@ -1,6 +1,9 @@
 import { Controller, Get, Req } from '@nestjs/common';
 import { AvailableDriversService } from './available-drivers.service';
 import { AvailabeDriverResponseDto } from './dto/response-available-driver.dto';
+import { LoggMetadata } from '../logs/dto/LoggMetadata';
+import { Request } from 'express';
+
 
 @Controller('available-drivers')
 export class AvailableDriversController {
@@ -13,15 +16,7 @@ export class AvailableDriversController {
   @Get()
   async getAvailable(@Req() req): Promise<AvailabeDriverResponseDto[]> {
 
-    const route = req.originalUrl;
-    const method = req.method;
-
-    const request : {route: string, method: string} = {
-      route: route,
-      method: method
-    }
-
-    const drivers = await this.availableDriversService.findAll(request);
+    const drivers = await this.availableDriversService.findAll(req);
     return drivers.map(d => ({
       driverName: d.allProps.driverName,
       vehicleType: d.allProps.vehicleType,

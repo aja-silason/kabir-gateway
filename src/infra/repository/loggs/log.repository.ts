@@ -23,7 +23,7 @@ export class TypeORMLoggsRepository implements LoggsProtocol {
 
     async findAll(): Promise<LoggsEntity[]> {
 
-        return await this.repository.find();
+        return await this.repository.find({order: {accessedAt: 'DESC'}});
         
     }
 
