@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { UUID } from "crypto";
 import { LoggsEntity } from "src/domain/logs/entity/logs.entity";
 import { LoggsProtocol } from "src/domain/logs/protocol/logs.protocol";
 import { LoggsDto } from "src/infra/http/logs/dto/LoggsDto";
@@ -22,13 +21,13 @@ export class TypeORMLoggsRepository implements LoggsProtocol {
 
     }
 
-    async findAll(): Promise<any[]> {
+    async findAll(): Promise<LoggsEntity[]> {
 
         return await this.repository.find();
         
     }
 
-    async findOne(id: UUID): Promise<any> {
+    async findOne(id: string): Promise<LoggsEntity> {
         
         const aLogg = await this.repository.findOne({where: {id: id}});
 
