@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { AvailableDriversService } from './available-drivers.service';
 import { AvailabeDriverResponseDto } from './dto/response-available-driver.dto';
 

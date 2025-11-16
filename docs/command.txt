@@ -1,9 +1,7 @@
-Inicializar o prisma
-    npx prisma init
+rodar a migration
 
-migrar o db
-    npx prisma migrate dev --name "nome do init"
-    npx prisma generate
+    npm run migration:generate src/infra/db/migrations/AddNewField
+    npm run migration:run
 
 Rodar de dentro do container
 
