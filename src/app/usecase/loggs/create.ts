@@ -10,13 +10,13 @@ export class GenerateLoggUsecase {
         private readonly protocol: LoggsProtocol
     ) {}
 
-    async execute(): Promise<void>{
+    async execute(request: { route: string, method: string }): Promise<void>{
 
         const id = crypto.randomUUID();
 
-        const ip = this.getLocalIP();
+        const deviceIp = this.getLocalIP();
 
-        const res = new LoggsDto(id, "/asdf", ip);
+        const res = new LoggsDto(id, request.route, deviceIp, request.method);
 
         this.protocol.create(res)
 

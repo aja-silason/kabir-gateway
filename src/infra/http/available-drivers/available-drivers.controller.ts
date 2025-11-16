@@ -11,9 +11,17 @@ export class AvailableDriversController {
 
 
   @Get()
-  async getAvailable(): Promise<AvailabeDriverResponseDto[]> {
+  async getAvailable(@Req() req): Promise<AvailabeDriverResponseDto[]> {
 
-    const drivers = await this.availableDriversService.findAll();
+    const route = req.originalUrl;
+    const method = req.method;
+
+    const request : {route: string, method: string} = {
+      route: route,
+      method: method
+    }
+
+    const drivers = await this.availableDriversService.findAll(request);
     return drivers.map(d => ({
       driverName: d.allProps.driverName,
       vehicleType: d.allProps.vehicleType,

@@ -11,13 +11,11 @@ export class AvailableDriversService {
       private readonly createLogService: LogsService
   ){}
 
-  async findAll(): Promise<any[]> {
+  async findAll(request: {route: string, method: string}): Promise<any[]> {
 
     const aSearch = await this.listAvailableDriversUsecase.execute();
     
-    const res = this.createLogService.create(aSearch);
-
-    console.log("No Usecase", res);
+    this.createLogService.create(request);
 
     return aSearch;
 
